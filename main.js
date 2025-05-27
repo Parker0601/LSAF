@@ -3,83 +3,8 @@ import fs from 'fs';
 
 const openai = new OpenAI({
   baseURL: "https://openrouter.ai/api/v1",
-  apiKey: "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",
+  apiKey: "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",
 });
-
-// 定義可疑的 User-Agent 模式
-const suspiciousUserAgents = {
-  'sqlmap': 'SQL 注入工具',
-  'Dalfox': 'XSS 掃描工具',
-  'curl': '自動化工具',
-  'python-requests': '自動化工具'
-};
-
-// 定義可疑的 URL 模式
-const suspiciousPatterns = {
-  'file=../../': '路徑遍歷攻擊',
-  '/admin': '管理員頁面訪問',
-  '/etc/passwd': '系統文件訪問嘗試'
-};
-
-// 分析單行日誌
-function analyzeLogLine(line, lineNumber) {
-  const issues = [];
-  
-  // 檢查 User-Agent
-  for (const [agent, description] of Object.entries(suspiciousUserAgents)) {
-    if (line.includes(agent)) {
-      issues.push({
-        type: '可疑工具使用',
-        description: description,
-        details: `使用 ${agent} 工具`
-      });
-    }
-  }
-
-  // 檢查 URL 模式
-  for (const [pattern, description] of Object.entries(suspiciousPatterns)) {
-    if (line.includes(pattern)) {
-      issues.push({
-        type: '可疑請求',
-        description: description,
-        details: `包含 ${pattern} 模式`
-      });
-    }
-  }
-
-  // 檢查 HTTP 狀態碼
-  const statusCode = line.match(/\s(\d{3})\s/)?.[1];
-  if (statusCode) {
-    if (statusCode === '403') {
-      issues.push({
-        type: '訪問被拒絕',
-        description: '請求被安全機制攔截',
-        details: 'HTTP 403 Forbidden'
-      });
-    } else if (statusCode === '500') {
-      issues.push({
-        type: '服務器錯誤',
-        description: '可能導致服務器錯誤的請求',
-        details: 'HTTP 500 Internal Server Error'
-      });
-    }
-  }
-
-  // 檢查來源
-  if (line.includes('http://evil.com')) {
-    issues.push({
-      type: '可疑來源',
-      description: '來自已知惡意域名',
-      details: '來源: http://evil.com'
-    });
-  }
-
-  return issues.length > 0 ? {
-    line_number: lineNumber,
-    line_content: line,
-    issues: issues
-  } : null;
-}
 
 async function main() {
     try {
@@ -87,30 +12,6 @@ async function main() {
         
         // 讀取 log 檔案
         const logContent = fs.readFileSync('attack_logs_apache_style.txt', 'utf8');
-        
-        // 批次處理相關程式碼（已註解）
-        /*
-        const logLines = logContent.split('\n');
-        
-        // 將日誌分成多個批次，每批次 500 行
-        const batchSize = 500;
-        const batches = [];
-        for (let i = 0; i < logLines.length; i += batchSize) {
-            batches.push(logLines.slice(i, i + batchSize));
-        }
-
-        // 指定要處理的批次（這裡是第二批次，索引為 1）
-        const targetBatchIndex = 1; // 0 是第一批次，1 是第二批次
-        
-        // 檢查批次索引是否有效
-        if (targetBatchIndex < 0 || targetBatchIndex >= batches.length) {
-            console.error(`錯誤：批次索引 ${targetBatchIndex} 超出範圍。總共有 ${batches.length} 個批次。`);
-            return;
-        }
-
-        console.log(`\n處理第 ${targetBatchIndex + 1}/${batches.length} 批次...`);
-        const batchContent = batches[targetBatchIndex].join('\n');
-        */
         
         // 檢查檔案內容是否為空
         if (!logContent.trim()) {
@@ -122,21 +23,58 @@ async function main() {
             model: "meta-llama/llama-4-scout:free",
             messages: [
               {
-                role: "user",
-                content: `請直接回傳 JSON 格式的分析結果，不要加入任何其他說明或格式：
+                role: "system",
+                content: `
+請根據輸入的 Web Log 或系統日誌，分析是否為攻擊行為，並根據下列規則輸出一段 JSON 格式的結果。
+
+僅在確認為真實攻擊時，才將 "is_attack" 設為 true。
+
+當 "is_attack" 為 true 時，請依照以下順序執行：
+1. 產出對應處理指令（shell_script），針對此次攻擊採取立即反制行為。
+2. 解釋每條指令的功能、用途與風險（script_explanation）。
+3. 最後提供詳細的攻擊說明與處理建議（general_response），包括：
+   - 攻擊類型與手法
+   - 攻擊者可能使用的工具（如 sqlmap、dirbuster、hydra 等）
+   - 潛在風險
+   - 防禦方式與建議設定（如 ModSecurity、Fail2Ban、Suricata、OWASP CRS 等）
+   - 安裝方式、設定範例
+   - 若適用，提供 CVE 編號與修補方式
+
+請僅回傳以下 JSON 格式，不要附加其他說明文字：
 
 {
-  "is_attack": true/false,                 // 是否為攻擊行為
-  "need_test_command": true/false,        // 是否需要進一步測試命令確認
-  "shell_script": "測試命令或空字串",     // 若 need_test_command 為 true，必須提供測試命令
-  "general_response": "攻擊說明"          // 對此次攻擊的綜合描述
+  "is_attack": true/false,
+  "shell_script": "若為攻擊行為則提供對應指令",
+  "script_explanation": "逐條說明 shell_script 的指令用途與風險",
+  "general_response": "針對本次攻擊的綜合說明與防禦建議"
 }
 
-注意事項：
-1. 如果 need_test_command 為 true，必須在 shell_script 中提供相應的測試命令
 
 分析以下 log：
-${logContent}`
+${logContent}
+`
+
+//                 content: `
+// Please return the analysis result in strict JSON format only, with no additional explanation or formatting:
+
+// {
+//   "is_attack": true/false,                 // Whether this is an attack behavior (analyze strictly; avoid false positives. Only mark true if there is sufficient evidence)
+//   "need_test_command": true/false,        // Whether a sandbox test command is required (if you are not confident about the generated command, set to true so the system can test it safely first)
+//   "shell_script": "test command or empty string", // If need_test_command is true, provide a proper test command with clear purpose and function
+//   "general_response": "attack explanation and handling suggestions" // A comprehensive description of the attack. Must include: method of attack, potential risks, explanation of relevant tools, possible intent, and concrete suggestions for mitigation or defense (e.g., security patching, configuration, server hardening, etc.). Be as detailed as possible
+// }
+
+// Notes:
+// 1. If need_test_command is true, you must provide a corresponding shell_script command
+// 2. Be cautious when determining is_attack — avoid misjudging normal traffic as attacks; only mark as true when there is concrete evidence from the log (e.g., unusual paths, suspicious user-agents, known attack payloads, etc.)
+// 3. If you are highly confident in the shell_script command (i.e., it won't cause unintended damage), you can set need_test_command to false and allow the admin to use it directly. If not confident, set to true so the system will verify it in a sandbox first
+// 4. The system will use the need_test_command value to decide whether sandbox testing is needed. If sandbox feedback is returned, it will be provided to you for reference so you can regenerate the command accordingly. Therefore, ensure the shell_script is logically clear and easily adjustable
+// 5. Do not use markdown grammar in your response
+
+// Analyze the following log:
+// ${logContent}
+
+// `
               }
             ]
           });
