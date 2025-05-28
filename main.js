@@ -3,7 +3,7 @@ import fs from 'fs';
 
 const openai = new OpenAI({
   baseURL: "https://openrouter.ai/api/v1",
-  apiKey: "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",
+  apiKey: "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",
 });
 
 async function main() {
@@ -40,7 +40,11 @@ async function main() {
    - 安裝方式、設定範例
    - 若適用，提供 CVE 編號與修補方式
 
-請僅回傳以下 JSON 格式，不要附加其他說明文字：
+
+分析以下 log：
+${logContent}
+
+不管給的請僅回傳以下 JSON 格式，不要附加其他說明文字：
 
 {
   "is_attack": true/false,
@@ -49,9 +53,6 @@ async function main() {
   "general_response": "針對本次攻擊的綜合說明與防禦建議"
 }
 
-
-分析以下 log：
-${logContent}
 `
 
 //                 content: `

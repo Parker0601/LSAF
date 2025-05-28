@@ -1,0 +1,15 @@
+2025-05-28T08:33:19.787471+00:00 rsyslog sshd[6619]: Failed password for testuser from 2001:e10:6840:32:be24:11ff:febe:d40b port 59048 ssh2
+2025-05-28T08:33:19.787834+00:00 rsyslog sshd[6618]: Failed password for testuser from 2001:e10:6840:32:be24:11ff:febe:d40b port 59042 ssh2
+2025-05-28T08:33:19.790892+00:00 rsyslog sshd[6617]: Failed password for testuser from 2001:e10:6840:32:be24:11ff:febe:d40b port 59030 ssh2
+2025-05-28T08:33:19.791241+00:00 rsyslog sshd[6620]: Failed password for testuser from 2001:e10:6840:32:be24:11ff:febe:d40b port 59058 ssh2
+2025-05-28T08:33:19.791910+00:00 rsyslog sshd[6621]: Failed password for testuser from 2001:e10:6840:32:be24:11ff:febe:d40b port 59060 ssh2
+2025-05-28T08:33:21.837128+00:00 rsyslog sshd[6618]: Connection closed by authenticating user testuser 2001:e10:6840:32:be24:11ff:febe:d40b port 59042 [preauth]
+2025-05-28T08:33:21.837765+00:00 rsyslog sshd[6619]: Connection closed by authenticating user testuser 2001:e10:6840:32:be24:11ff:febe:d40b port 59048 [preauth]
+2025-05-28T08:33:21.840073+00:00 rsyslog sshd[6617]: Connection closed by authenticating user testuser 2001:e10:6840:32:be24:11ff:febe:d40b port 59030 [preauth]
+2025-05-28T08:33:21.843490+00:00 rsyslog sshd[6620]: Connection closed by authenticating user testuser 2001:e10:6840:32:be24:11ff:febe:d40b port 59058 [preauth]
+2025-05-28T08:33:21.843935+00:00 rsyslog sshd[6621]: Connection closed by authenticating user testuser 2001:e10:6840:32:be24:11ff:febe:d40b port 59060 [preauth]
+2025-05-28T08:33:33.391979+00:00 rsyslog sudo:      lsa : TTY=pts/0 ; PWD=/home/lsa ; USER=root ; COMMAND=/usr/bin/cat /var/log/auth.log
+2025-05-28T08:33:33.437041+00:00 rsyslog sudo: pam_unix(sudo:session): session opened for user root(uid=0) by lsa(uid=1000)
+2025-05-28T08:33:33.437155+00:00 rsyslog sudo: pam_unix(sudo:session): session closed for user root
+2025-05-28T08:33:41.599275+00:00 rsyslog sudo:      lsa : TTY=pts/0 ; PWD=/home/lsa ; USER=root ; COMMAND=/usr/bin/cat /var/log/auth.log
+2025-05-28T08:33:41.600108+00:00 rsyslog sudo: pam_unix(sudo:session): session opened for user root(uid=0) by lsa(uid=1000)

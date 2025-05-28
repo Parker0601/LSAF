@@ -1,0 +1,70 @@
+2025-05-28T04:16:52.475390+00:00 ubuntu systemd-logind[1554]: New seat seat0.
+2025-05-28T04:16:52.475395+00:00 ubuntu systemd-logind[1554]: Watching system buttons on /dev/input/event0 (Power Button)
+2025-05-28T04:16:52.475400+00:00 ubuntu systemd-logind[1554]: Watching system buttons on /dev/input/event1 (Sleep Button)
+2025-05-28T04:16:52.475410+00:00 ubuntu systemd-logind[1554]: Watching system buttons on /dev/input/event2 (AT Translated Set 2 keyboard)
+2025-05-28T04:16:52.475485+00:00 ubuntu polkitd[1526]: Loading rules from directory /etc/polkit-1/rules.d
+2025-05-28T04:16:52.475489+00:00 ubuntu polkitd[1526]: Loading rules from directory /usr/share/polkit-1/rules.d
+2025-05-28T04:16:52.524605+00:00 ubuntu polkitd[1526]: Finished loading, compiling and executing 16 rules
+2025-05-28T04:16:52.536656+00:00 ubuntu polkitd[1526]: Acquired the name org.freedesktop.PolicyKit1 on the system bus
+2025-05-28T04:17:00.657573+00:00 ubuntu useradd[1825]: new group: name=installer, GID=1001
+2025-05-28T04:17:00.670077+00:00 ubuntu useradd[1825]: new user: name=installer, UID=1001, GID=1001, home=/home/installer, shell=/usr/bin/subiquity-shell, from=none
+2025-05-28T04:17:00.672358+00:00 ubuntu useradd[1825]: add 'installer' to group 'adm'
+2025-05-28T04:17:00.672405+00:00 ubuntu useradd[1825]: add 'installer' to group 'dialout'
+2025-05-28T04:17:00.672431+00:00 ubuntu useradd[1825]: add 'installer' to group 'cdrom'
+2025-05-28T04:17:00.672462+00:00 ubuntu useradd[1825]: add 'installer' to group 'floppy'
+2025-05-28T04:17:00.672487+00:00 ubuntu useradd[1825]: add 'installer' to group 'sudo'
+2025-05-28T04:17:00.672510+00:00 ubuntu useradd[1825]: add 'installer' to group 'audio'
+2025-05-28T04:17:00.672533+00:00 ubuntu useradd[1825]: add 'installer' to group 'dip'
+2025-05-28T04:17:00.672556+00:00 ubuntu useradd[1825]: add 'installer' to group 'video'
+2025-05-28T04:17:00.672584+00:00 ubuntu useradd[1825]: add 'installer' to group 'plugdev'
+2025-05-28T04:17:00.672608+00:00 ubuntu useradd[1825]: add 'installer' to group 'netdev'
+2025-05-28T04:17:00.672631+00:00 ubuntu useradd[1825]: add 'installer' to group 'lxd'
+2025-05-28T04:17:00.672653+00:00 ubuntu useradd[1825]: add 'installer' to shadow group 'adm'
+2025-05-28T04:17:00.672680+00:00 ubuntu useradd[1825]: add 'installer' to shadow group 'dialout'
+2025-05-28T04:17:00.672705+00:00 ubuntu useradd[1825]: add 'installer' to shadow group 'cdrom'
+2025-05-28T04:17:00.672728+00:00 ubuntu useradd[1825]: add 'installer' to shadow group 'floppy'
+2025-05-28T04:17:00.672752+00:00 ubuntu useradd[1825]: add 'installer' to shadow group 'sudo'
+2025-05-28T04:17:00.672778+00:00 ubuntu useradd[1825]: add 'installer' to shadow group 'audio'
+2025-05-28T04:17:00.672801+00:00 ubuntu useradd[1825]: add 'installer' to shadow group 'dip'
+2025-05-28T04:17:00.672825+00:00 ubuntu useradd[1825]: add 'installer' to shadow group 'video'
+2025-05-28T04:17:00.672848+00:00 ubuntu useradd[1825]: add 'installer' to shadow group 'plugdev'
+2025-05-28T04:17:00.672871+00:00 ubuntu useradd[1825]: add 'installer' to shadow group 'netdev'
+2025-05-28T04:17:00.672894+00:00 ubuntu useradd[1825]: add 'installer' to shadow group 'lxd'
+2025-05-28T04:17:01.542597+00:00 ubuntu CRON[1836]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2025-05-28T04:17:01.630028+00:00 ubuntu CRON[1836]: pam_unix(cron:session): session closed for user root
+2025-05-28T04:17:03.795253+00:00 ubuntu gdm-autologin]: gkr-pam: no password is available for user
+2025-05-28T04:17:03.925732+00:00 ubuntu gdm-autologin]: pam_unix(gdm-autologin:session): session opened for user ubuntu(uid=1000) by ubuntu(uid=0)
+2025-05-28T04:17:03.964846+00:00 ubuntu systemd-logind[1554]: New session 2 of user ubuntu.
+2025-05-28T04:17:04.102868+00:00 ubuntu (systemd): pam_unix(systemd-user:session): session opened for user ubuntu(uid=1000) by ubuntu(uid=0)
+2025-05-28T04:17:05.266597+00:00 ubuntu gdm-autologin]: gkr-pam: couldn't unlock the login keyring.
+2025-05-28T04:17:18.666276+00:00 ubuntu gnome-keyring-daemon[1901]: The PKCS#11 component was already initialized
+2025-05-28T04:17:18.667318+00:00 ubuntu gnome-keyring-daemon[2152]: discover_other_daemon: 1
+2025-05-28T04:17:18.687429+00:00 ubuntu gnome-keyring-daemon[1901]: The Secret Service was already initialized
+2025-05-28T04:17:18.687870+00:00 ubuntu gnome-keyring-daemon[2153]: discover_other_daemon: 1
+2025-05-28T04:17:18.687965+00:00 ubuntu gnome-keyring-daemon[2156]: discover_other_daemon: 1
+2025-05-28T04:17:33.306940+00:00 ubuntu polkitd[1526]: Registered Authentication Agent for unix-session:2 (system bus name :1.40 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale C.UTF-8)
+2025-05-28T04:17:38.643889+00:00 ubuntu sudo:   ubuntu : PWD=/home/ubuntu ; USER=root ; COMMAND=/usr/bin/systemctl start udisks2-inhibit.service
+2025-05-28T04:17:38.657845+00:00 ubuntu sudo: pam_unix(sudo:session): session opened for user root(uid=0) by ubuntu(uid=1000)
+2025-05-28T04:17:38.775739+00:00 ubuntu sudo: pam_unix(sudo:session): session closed for user root
+2025-05-28T04:18:17.893815+00:00 ubuntu sudo:   ubuntu : PWD=/home/ubuntu ; USER=root ; COMMAND=/usr/bin/systemctl stop udisks2-inhibit.service
+2025-05-28T04:18:18.009170+00:00 ubuntu sudo: pam_unix(sudo:session): session opened for user root(uid=0) by ubuntu(uid=1000)
+2025-05-28T04:18:19.657423+00:00 ubuntu sudo: pam_unix(sudo:session): session closed for user root
+2025-05-28T04:18:31.906934+00:00 ubuntu chpasswd[3409]: pam_unix(chpasswd:chauthtok): password changed for installer
+2025-05-28T04:18:31.909633+00:00 ubuntu chpasswd[3409]: gkr-pam: couldn't update the login keyring password: no old password was entered
+2025-05-28T04:18:33.239990+00:00 ubuntu realmd[3438]: Loaded settings from: /usr/lib/realmd/realmd-defaults.conf /usr/lib/realmd/realmd-distro.conf
+2025-05-28T04:18:33.254157+00:00 ubuntu realmd[3438]: holding daemon: startup
+2025-05-28T04:18:33.254226+00:00 ubuntu realmd[3438]: starting service
+2025-05-28T04:18:33.257607+00:00 ubuntu realmd[3438]: GLib-GIO: Using cross-namespace EXTERNAL authentication (this will deadlock if server is GDBus < 2.73.3)
+2025-05-28T04:18:33.287558+00:00 ubuntu realmd[3438]: connected to bus
+2025-05-28T04:18:33.307062+00:00 ubuntu realmd[3438]: GLib-GIO: _g_io_module_get_default: Found default implementation local (GLocalVfs) for ‘gio-vfs’
+2025-05-28T04:18:33.326844+00:00 ubuntu realmd[3438]: released daemon: startup
+2025-05-28T04:18:33.334599+00:00 ubuntu realmd[3438]: claimed name on bus: org.freedesktop.realmd
+2025-05-28T04:18:33.358082+00:00 ubuntu realmd[3438]: client using service: :1.85
+2025-05-28T04:18:33.358144+00:00 ubuntu realmd[3438]: holding daemon: :1.85
+2025-05-28T04:18:33.358168+00:00 ubuntu realmd[3438]: Using 'r132.3429' operation for method 'Discover' invocation on 'org.freedesktop.realmd.Provider' interface
+2025-05-28T04:18:33.358197+00:00 ubuntu realmd[3438]: Registered cancellable for operation 'r132.3429'
+2025-05-28T04:18:33.398283+00:00 ubuntu realmd[3438]:  * No default domain received via DHCP or given by hostname
+2025-05-28T04:18:33.409113+00:00 ubuntu realmd[3438]: client gone away: :1.85
+2025-05-28T04:18:33.410093+00:00 ubuntu realmd[3438]: released daemon: :1.85
+2025-05-28T04:19:14.372224+00:00 ubuntu sudo:   ubuntu : TTY=pts/0 ; PWD=/home/ubuntu ; USER=root ; COMMAND=/usr/bin/cat /var/log/auth.log
+2025-05-28T04:19:14.391147+00:00 ubuntu sudo: pam_unix(sudo:session): session opened for user root(uid=0) by ubuntu(uid=1000)
